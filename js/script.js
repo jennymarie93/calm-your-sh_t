@@ -17,4 +17,36 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     };
 
+    // CHANGE ACTIVE STATE FOR ALL SECTIONS WITH INTERSECTION OBSERVER
+    const myobserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.setAttribute("data-sectionstate", "active");
+        } else {
+            entry.target.setAttribute("data-sectionstate", "inactive");
+        }
+        });
+    });
+
+    document.querySelectorAll("section").forEach((section) => {
+        myobserver.observe(section);
+    });
+
+   const buddha = document.querySelector("#buddha");
+   
+    const buddhasize = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            buddha.setAttribute("data-buddha", "small");
+        } else {
+            buddha.setAttribute("data-buddha", "big");
+        }
+        });
+    });
+
+    document.querySelectorAll("#section-gallery .row").forEach((section) => {
+        buddhasize.observe(section);
+    });
+
 });
+
